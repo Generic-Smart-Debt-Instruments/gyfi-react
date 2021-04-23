@@ -10,7 +10,7 @@ function Home() {
           <h2>Links</h2>
           <ul>
             <li>
-              GYFI Token Sales: <NavLink to="/sale">/sale</NavLink>
+              GYFI Token Sales: <NavLink to="/sale">/#/sale</NavLink>
             </li>
             <li>
               Whitepapers:{" "}
