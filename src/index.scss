@@ -1,27 +1,44 @@
-table, th, td {
-  border: 1px solid black;
-  padding:5px;
-  button{
-    width:100%;
+@import "./theme";
+
+table,
+th,
+td {
+  padding: 5px;
+
+  @include themed {
+    border: 1px solid t("border");
+  }
+
+  button {
+    width: 100%;
   }
 }
-table{
-  margin:20px;
-  display:inline-block;
+table {
+  margin: 20px;
+  display: inline-block;
 }
 
-h3{
-  padding-left:20px;
-  margin:0px;
+h3 {
+  padding-left: 20px;
+  margin: 0px;
 }
 
-p{
-  max-width:720px;
+p {
+  max-width: 720px;
   padding: 0px 20px;
 }
 
-.button{
-  border: 1px solid #ccc;
+body {
+  @include themed {
+    background: t("background") !important;
+    color: t("text") !important;
+  }
+
+  a {
+    @include themed {
+      color: t("link") !important;
+    }
+  }
 }
 
 header {
@@ -32,28 +49,35 @@ header {
   padding: 0px 20px;
   height: 70px;
   border-bottom: 1px solid #ccc;
-  font-weight:bold;
+  font-weight: bold;
 
-  .network {
-    display: inline-block;
-    border-right: 1px solid #ccc;
-    margin-right: 10px;
-    border-radius: 0px;
-    padding: 0px 10px;
-    position:relative;
-    top:-2px;
-    font-weight:normal
-  }
+  .header {
+    display: flex;
 
-  .account {
-    max-width: 30vw;
-    overflow: hidden;
-    display: inline-block;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    position:relative;
-    top:2px;
-    font-weight:normal
+    .network {
+      display: inline-block;
+      border-right: 1px solid #ccc;
+      margin-right: 10px;
+      border-radius: 0px;
+      padding: 0px 10px;
+      position: relative;
+      top: -2px;
+      font-weight: normal;
+    }
+
+    .account {
+      max-width: 30vw;
+      overflow: hidden;
+      display: inline-block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      position: relative;
+      top: 2px;
+      font-weight: normal;
+    }
   }
 }
 
+button {
+  margin-left: 10px;
+}
