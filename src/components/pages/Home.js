@@ -27,7 +27,7 @@ function Home() {
             <li>
               Telegram Ann:{" "}
               <a target="_blank" href="https://t.me/GSDIAnnouncement">
-                t.me/GSDIofficial
+                t.me/GSDIAnnouncement
               </a>
             </li>
             <li>
