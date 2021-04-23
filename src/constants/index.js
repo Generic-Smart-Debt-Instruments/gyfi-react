@@ -23,8 +23,8 @@ export const CHAIN_LABELS = {
 };
 
 export const RPC_URLS = {
-  [CHAINS.Mainnet]: `https://mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA}`,
-  [CHAINS.Rinkeby]: `https://rinkeby.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA}`,
+  [CHAINS.Mainnet]: `https://mainnet.infura.io/v3/${process.env.REACT_APP_INFURA}`,
+  [CHAINS.Rinkeby]: `https://rinkeby.infura.io/v3/${process.env.REACT_APP_INFURA}`,
   [CHAINS.BSC]: "https://bsc-dataseed.binance.org/",
   [CHAINS.BSCTestnet]: "https://data-seed-prebsc-1-s2.binance.org:8545/",
   [CHAINS.xDai]: "https://rpc.xdaichain.com",

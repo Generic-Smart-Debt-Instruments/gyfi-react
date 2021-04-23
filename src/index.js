@@ -1,17 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { HashRouter, Route } from "react-router-dom";
-import './index.scss';
 import Home from "./components/pages/Home.js";
 import Sale from "./components/pages/Sale.js";
-import reportWebVitals from './reportWebVitals';
-import {DAppProvider} from '@usedapp/core';
+import reportWebVitals from "./reportWebVitals";
+import { DAppProvider } from "@usedapp/core";
 import {
   CHAINS,
   MUTICALL_ADDRESSES,
   RPC_URLS,
   SUPPORT_CHAINS,
 } from "./constants";
+
+import "./styles/index.scss";
 
 const dappConfig = {
   readOnlyChainId: CHAINS.Rinkeby,
@@ -24,10 +25,10 @@ ReactDOM.render(
   <HashRouter>
     <DAppProvider config={dappConfig}>
       <Route exact path="/" component={Home} />
-      <Route path="/sale" component={Sale}/>
+      <Route path="/sale" component={Sale} />
     </DAppProvider>
   </HashRouter>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
