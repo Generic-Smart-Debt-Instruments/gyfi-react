@@ -13,8 +13,8 @@ function Header() {
     <header>
       <NavLink to="/">GYFI</NavLink>
       <section className="header">
-        <Button onClick={toggleTheme}>
-          {!theme ? "Dark Mode" : "Light Mode"}
+        <Button padding="0px" onClick={toggleTheme}>
+          {!theme ? "☽" : "☼"}
         </Button>
         {account ? (
           <div className="info">

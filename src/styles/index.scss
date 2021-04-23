@@ -80,8 +80,13 @@ header {
 
 button {
   margin-left: 10px;
+  cursor: pointer;
 
   &:first-child {
     margin-left: 0;
   }
+}
+
+main {
+  padding: 0px 0px 150px 5px;
 }
