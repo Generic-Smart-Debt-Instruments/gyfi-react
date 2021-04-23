@@ -1,11 +1,12 @@
 import { utils } from 'ethers';
 
+/*
 import {
   getExplorerUrl,
   getNetworkCurrency,
   getNetworkName,
   getRPCUrl,
-} from './helpers';
+} from '../constants';
 
 export const addTokenToMetamask = async token => {
   return window.ethereum.request({
@@ -41,3 +42,4 @@ export const addChainToMetaMask = async ethereumChain => {
     ],
   });
 };
+*/

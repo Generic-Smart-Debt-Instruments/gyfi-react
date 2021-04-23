@@ -3,7 +3,7 @@
 table,
 th,
 td {
-  padding: 5px;
+  padding: 5px;;
 
   @include themed {
     border: 1px solid t("border");
@@ -17,7 +17,13 @@ table {
   margin: 20px;
   display: inline-block;
 }
-
+th,
+td {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 h3 {
   padding-left: 20px;
   margin: 0px;
