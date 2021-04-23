@@ -6,22 +6,21 @@ import React from "react";
 - Fetch time end, time start, rate, cap, and user cap from contract
 - When click netwok button, switch to network
 */
-const SaleCard = ({saleConfig}) => {
-  console.log("saleConfig"+saleConfig)
+const SaleCard = ({sale}) => {
   const blockExplorerUrl = "https://rinkeby.etherscan.io"
   return (
     <>
       <table>
         <thead>
           <tr>
-            <th colSpan={2}>{saleConfig.name}</th>
+            <th colSpan={2}>{sale.name}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Network:</td>
             <td>
-              <Button>{saleConfig.network}</Button>
+              <Button>{sale.network}</Button>
             </td>
           </tr>
           <tr>
@@ -57,7 +56,7 @@ const SaleCard = ({saleConfig}) => {
           <tr>
             <td>Contract Address:</td>
             <td>
-              <a href={`${blockExplorerUrl}/address/${saleConfig.address}`}>{saleConfig.address}</a>
+              <a href={`${blockExplorerUrl}/address/${sale.address}`}>{sale.address}</a>
             </td>
           </tr>
         </tbody>

@@ -14,37 +14,37 @@ function Home() {
             </li>
             <li>
               Whitepapers:{" "}
-              <a target="_blank" href="https://whitepaper.gyfi.eth.link">
+              <a target="_blank" rel="noreferrer" href="https://whitepaper.gyfi.eth.link">
                 whitepaper.gyfi.eth
               </a>
             </li>
             <li>
               Telegram Chat:{" "}
-              <a target="_blank" href="https://t.me/GSDIofficial">
+              <a target="_blank" rel="noreferrer" href="https://t.me/GSDIofficial">
                 t.me/GSDIofficial
               </a>
             </li>
             <li>
               Telegram Ann:{" "}
-              <a target="_blank" href="https://t.me/GSDIAnnouncement">
+              <a target="_blank" rel="noreferrer" href="https://t.me/GSDIAnnouncement">
                 t.me/GSDIAnnouncement
               </a>
             </li>
             <li>
               Twitter:{" "}
-              <a target="_blank" href="https://twitter.com/GsdiOfficial">
+              <a target="_blank" rel="noreferrer" href="https://twitter.com/GsdiOfficial">
                 twitter.com/GsdiOfficial
               </a>
             </li>
             <li>
               Medium:{" "}
-              <a target="_blank" href="https://gsdiofficial.medium.com/">
+              <a target="_blank" rel="noreferrer" href="https://gsdiofficial.medium.com/">
                 gsdiofficial.medium.com
               </a>
             </li>
             <li>
               Discord:{" "}
-              <a target="_blank" href="https://discord.gg/yG7SDGVGzP">
+              <a target="_blank" rel="noreferrer" href="https://discord.gg/yG7SDGVGzP">
                 discord.gg/yG7SDGVGzP
               </a>
             </li>
@@ -58,7 +58,7 @@ function Home() {
             borrower, price, face value, and maturity.
             <br />
             Article:{" "}
-            <a href="https://gsdiofficial.medium.com/benefits-of-generic-smart-debt-instruments-901314a6fe5">
+            <a target="_blank" rel="noreferrer" href="https://gsdiofficial.medium.com/benefits-of-generic-smart-debt-instruments-901314a6fe5">
               Benefits of GSDI
             </a>
           </p>

@@ -1,27 +1,16 @@
-import { useEffect, useState } from "react";
 import Header from '../common/Header.js';
 import SaleCard from '../common/SaleCard.js';
-import {useEthers} from "@usedapp/core";
-import {getEnsJson} from '../../lib/ens.js';
+import {useSaleConfig} from "../../hooks/useSaleConfig.js";
 
 function Sale() {
-  const { library } = useEthers();
-  const [saleConfigState, setSaleConfigState] = useState({});
-
-  useEffect(()=>{
-    (async () => {
-      setSaleConfigState(
-        await getEnsJson(library,"data.gyfi.eth")
-      );
-    })()
-  },[library]);
+  const saleConfig = useSaleConfig();
 
   return (
   <>
     <Header />
     <main>
-      {(saleConfigState && saleConfigState.sales && !saleConfigState.error) ? (<>
-        {saleConfigState.sales.map((saleConfig)=><SaleCard saleConfig={saleConfig} />)}
+      {(saleConfig && saleConfig.sales && !saleConfig.error) ? (<>
+        {saleConfig.sales.map((sale)=><SaleCard sale={sale} key={sale.name} />)}
       </>) : (<>
         <p>To view GYFI sales, connect your web3 wallet.</p>
       </>)
