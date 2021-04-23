@@ -82,7 +82,7 @@ function Home() {
           <p>We believe in the vision of an open internet where anyone can be anything. Our team is primarily anonymous and operates entirely under psuedonyms. All our members have years of experience building a variety of applications on blockchains.</p>
           <ul>
             <li><b>Crypto Shipwright</b> has consulted for various major defi products and is the technical lead.</li>
-            <li><b>Axdev</b> developed defi and trading platforms with options and develops solidity plus react.</li>
+            <li><b>Devneser</b> developed defi and trading platforms with options and develops solidity plus react.</li>
             <li><b>JKP</b> built several defi and nft products on Ethereum and writes contracts and react dapps.</li>
             <li><b>BigBronson</b> promoted several successful blockchain projects and educates the public on defi.</li>
             <li><b>RADEON</b> grew multiple defi communities from infancy and provides social media management.</li>
