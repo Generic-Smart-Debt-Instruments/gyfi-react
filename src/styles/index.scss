@@ -35,6 +35,7 @@ p {
 }
 
 body {
+  margin: 0px;
   @include themed {
     background: t("background") !important;
     color: t("text") !important;
@@ -47,39 +48,51 @@ body {
   }
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 20px;
-  height: 70px;
-  border-bottom: 1px solid #ccc;
-  font-weight: bold;
-
-  .header {
+.header-container{
+  position:relative;
+  #tsparticles {
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    right:0;
+    z-index:-1;
+  }
+  header {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+    height: 70px;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
 
-    .network {
-      display: inline-block;
-      border-right: 1px solid #ccc;
-      margin-right: 10px;
-      border-radius: 0px;
-      padding: 0px 10px;
-      position: relative;
-      top: -2px;
-      font-weight: normal;
-    }
+    .header {
+      display: flex;
+      position:relative;
 
-    .account {
-      max-width: 30vw;
-      overflow: hidden;
-      display: inline-block;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      position: relative;
-      top: 2px;
-      font-weight: normal;
+      .network {
+        display: inline-block;
+        border-right: 1px solid #ccc;
+        margin-right: 10px;
+        border-radius: 0px;
+        padding: 0px 10px;
+        position: relative;
+        top: -2px;
+        font-weight: normal;
+      }
+
+      .account {
+        max-width: 30vw;
+        overflow: hidden;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        position: relative;
+        top: 2px;
+        font-weight: normal;
+      }
     }
   }
 }
