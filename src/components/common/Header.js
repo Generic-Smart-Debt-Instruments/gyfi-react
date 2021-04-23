@@ -3,14 +3,19 @@ import { useEthers } from "@usedapp/core";
 import Button from "./Button.js";
 import { CHAIN_LABELS } from "../../constants";
 import { NavLink } from "react-router-dom";
+import useTheme from "../../hooks/useTheme.js";
 
 function Header() {
   const { activateBrowserWallet, account, chainId } = useEthers();
+  const [theme, toggleTheme] = useTheme();
 
   return (
-    <header >
+    <header>
       <NavLink to="/">GYFI</NavLink>
       <section className="header">
+        <Button onClick={toggleTheme}>
+          {!theme ? "Dark Mode" : "Light Mode"}
+        </Button>
         {account ? (
           <div className="info">
             {chainId && (
