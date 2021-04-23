@@ -7,6 +7,7 @@ import React from "react";
 - When click netwok button, switch to network
 */
 const SaleCard = ({saleConfig}) => {
+  console.log("saleConfig"+saleConfig)
   const blockExplorerUrl = "https://rinkeby.etherscan.io"
   return (
     <>

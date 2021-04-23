@@ -20,10 +20,10 @@ function Sale() {
   <>
     <Header />
     <main>
-      {saleConfigState.error ? (<>
-        <p>To view GYFI sales, connect your web3 wallet.</p>
-      </>) : (<>
+      {(saleConfigState && saleConfigState.sales && !saleConfigState.error) ? (<>
         {saleConfigState.sales.map((saleConfig)=><SaleCard saleConfig={saleConfig} />)}
+      </>) : (<>
+        <p>To view GYFI sales, connect your web3 wallet.</p>
       </>)
       }
     </main>
