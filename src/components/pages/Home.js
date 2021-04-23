@@ -77,6 +77,25 @@ function Home() {
             deploy new pools and strategies.
           </p>
         </section>
+        <section>
+          <h2>Team</h2>
+          <p>We believe in the vision of an open internet where anyone can be anything. Our team is primarily anonymous and operates entirely under psuedonyms. All our members have years of experience building a variety of applications on blockchains.</p>
+          <ul>
+            <li><b>Crypto Shipwright</b> has consulted for various major defi products and is the technical lead.</li>
+            <li><b>Axdev</b> developed defi and trading platforms with options and develops solidity plus react.</li>
+            <li><b>JKP</b> built several defi and nft products on Ethereum and writes contracts and react dapps.</li>
+            <li><b>BigBronson</b> promoted several successful blockchain projects and educates the public on defi.</li>
+            <li><b>RADEON</b> grew multiple defi communities from infancy and provides social media management.</li>
+            <li><b>Ambulance</b> designed corporate campaigns and creatively generates effective graphics.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Legal Notices</h2>
+          <h3>Jurisdiction Limitations</h3>
+          <p>USA Citizens, residents, affiliates, agents, or anyone else who may be under the jurisdiction of the U.S. SEC are not permitted to use GSDI, GYFI, GAUC, GSDI Pools, or this website. If you are in the USA, please leave this site immediately as you are putting the whole community at risk!</p>
+          <h3>Disclaimer</h3>
+          <p>This is new Defi tech, use at your own risk! GSDI, GYFI, GAUC, GSDI Pools, this website, and any other technology related to GSDI is provided to you "as-is" with no promises of future upgrades, current support, or any other promises by anyone including the devs. </p>
+        </section>
       </main>
     </>
   );
