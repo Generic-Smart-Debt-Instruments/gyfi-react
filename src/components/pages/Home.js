@@ -94,7 +94,7 @@ function Home() {
           <h3>Jurisdiction Limitations</h3>
           <p>USA Citizens, residents, affiliates, agents, or anyone else who may be under the jurisdiction of the U.S. SEC are not permitted to use GSDI, GYFI, GAUC, GSDI Pools, or this website. If you are in the USA, please leave this site immediately as you are putting the whole community at risk!</p>
           <h3>Disclaimer</h3>
-          <p>This is new Defi tech, use at your own risk! GSDI, GYFI, GAUC, GSDI Pools, this website, and any other technology related to GSDI is provided to you "as-is" with no promises of future upgrades, current support, or any other promises by anyone including the devs. </p>
+          <p>This is new Defi tech, use at your own risk! GSDI, GYFI, GAUC, GSDI Pools, this website, and any other technology related to GSDI is provided to you "as-is" with no promises of future upgrades, current support, or any other promises by anyone including the devs. GSDI is a community-run project so if there's a feature you want, join the discussion and contribute your skills.</p>
         </section>
       </main>
     </>
