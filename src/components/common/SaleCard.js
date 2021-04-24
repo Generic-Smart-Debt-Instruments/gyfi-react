@@ -4,8 +4,9 @@ import Button from "./Button.js";
 import React from "react";
 import {useEthers} from "@usedapp/core";
 import {BLOCK_EXPLORERS, CHAIN_CURRENCIES} from "../../constants";
-import {addChainToMetaMask, addTokenToMetamask} from "../../lib/metamask.js";
+import {addChainToMetaMask} from "../../lib/metamask.js";
 import {useSaleContractState} from "../../hooks/useSaleContractState.js";
+import {useCountdown} from "../../hooks/useCountdown.js";
 
 import {weiToFixed} from "../../lib/bndisplay";
 
@@ -17,14 +18,17 @@ const SaleCard = ({sale}) => {
   const { chainId } = useEthers();
   const saleContractState = useSaleContractState(sale.chainId, sale.address);
 
-  const [isOnChain, setIsOnChain] = useState(chainId == sale.chainId);
+  const [isOnChain, setIsOnChain] = useState(chainId === sale.chainId);
   useEffect(()=>{
-    setIsOnChain(!!chainId && sale.chainId == chainId.toString());
-  },[chainId])
+    setIsOnChain(!!chainId && sale.chainId === chainId.toString());
+  },[chainId,sale.chainId])
 
-  
   const blockExplorerUrl = BLOCK_EXPLORERS[sale.chainId];
   const currency = CHAIN_CURRENCIES[sale.chainId];
+
+  const startCountdown = useCountdown(saleContractState.openingTime,"Sale Started.");
+  const endCountdown = useCountdown(saleContractState.closingTime,"Sale Finished.");
+
   return (
     <>
       <table>
@@ -41,7 +45,7 @@ const SaleCard = ({sale}) => {
               { isOnChain ? (<>
                 ✔
               </>) : (<>
-                ❌{(sale.chainId != "1" && sale.chainId != "3" && sale.chainId != "4" && sale.chainId != "42" && sale.chainId != "420" ) &&
+                ❌{(sale.chainId !== "1" && sale.chainId !== "3" && sale.chainId !== "4" && sale.chainId !== "42" && sale.chainId !== "420" ) &&
                   <Button onClick={()=>addChainToMetaMask(sale.chainId)}>{"<->"}</Button>
                 }
               </>)
@@ -50,11 +54,11 @@ const SaleCard = ({sale}) => {
           </tr>
           <tr>
             <td>Start Countdown</td>
-            <td>{saleContractState.openingTime}</td>
+            <td>{startCountdown}</td>
           </tr>
           <tr>
             <td>End Countdown</td>
-            <td>{saleContractState.closingTime}</td>
+            <td>{endCountdown}</td>
           </tr>
           <tr>
             <td>Cap</td>
@@ -65,18 +69,22 @@ const SaleCard = ({sale}) => {
           <tr>
             <td>User Cap:</td>
             <td>
-              {"1000"} {currency}
+              {weiToFixed(saleContractState.perBeneficiaryCap,2)} {currency}
             </td>
           </tr>
           <tr>
             <td>GYFI available:</td>
-            <td>{"1000"} GYFI</td>
+            {(!!saleContractState.rate && !!saleContractState.cap && !!saleContractState.weiRaised) && (
+              <td>{weiToFixed(saleContractState.rate.mul(saleContractState.cap).sub(saleContractState.weiRaised),0)} GYFI</td>
+            )}
           </tr>
           <tr>
             <td>Rate:</td>
-            <td>
-              {"1"} GYFI/{currency}
-            </td>
+            {!!saleContractState.rate && (
+              <td>
+                {saleContractState.rate.toString()} GYFI/{currency}
+              </td>
+            )}
           </tr>
           <tr>
             <td>Contract Address:</td>

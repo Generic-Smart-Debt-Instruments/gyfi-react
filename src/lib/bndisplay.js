@@ -1,7 +1,7 @@
 import {utils} from "ethers";
-const { formatEther, parseEther } = utils;
+const { formatEther } = utils;
 
 export function weiToFixed(bn,decimals) {
     if(!bn) return null;
-    return Number(formatEther(bn)).toFixed(2);
+    return Number(formatEther(bn)).toFixed(decimals);
 }

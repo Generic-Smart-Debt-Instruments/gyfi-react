@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import {useEthers} from "@usedapp/core";
-import {RPC_URLS, MUTICALL_ADDRESSES} from "../constants";
+import {RPC_URLS} from "../constants";
 import { createWatcher } from '@makerdao/multicall';
 import { MULTICALL_ADDRESSES } from "@usedapp/core";
 
@@ -20,71 +20,70 @@ export function useSaleContractState(chainId, saleContractAddress) {
     });
 
     useEffect(()=>{
-        console.log("Sale contract state effect")
-        console.log(saleContractState)
-    },[saleContractState])
-
-    useEffect(()=>{
         if(!chainId || !saleContractAddress) return;
-        console.log("Updating")
         let watcher;
         let calls = [
             {
                 target: saleContractAddress,
                 call: ['cap()(uint256)'],
                 returns: [['cap', (val)=>val]]
-            }/*,
+            },
             {
                 target: saleContractAddress,
-                call: ['capReached()'],
+                call: ['capReached()(bool)'],
                 returns: [['capReached', (val)=>val]]
             },
             {
                 target: saleContractAddress,
-                call: ['openingTime()'],
+                call: ['openingTime()(uint256)'],
                 returns: [['openingTime', (val)=>val]]
             },
             {
                 target: saleContractAddress,
-                call: ['closingTime()'],
+                call: ['closingTime()(uint256)'],
                 returns: [['closingTime', (val)=>val]]
             },
             {
                 target: saleContractAddress,
-                call: ['isOpen()'],
+                call: ['isOpen()(bool)'],
                 returns: [['isOpen', (val)=>val]]
             },
             {
                 target: saleContractAddress,
-                call: ['hasClosed()'],
+                call: ['hasClosed()(bool)'],
                 returns: [['hasClosed', (val)=>val]]
             },
             {
                 target: saleContractAddress,
-                call: ['rate()'],
+                call: ['rate()(uint256)'],
                 returns: [['rate', (val)=>val]]
             },
             {
                 target: saleContractAddress,
-                call: ['weiRaised()'],
+                call: ['weiRaised()(uint256)'],
                 returns: [['weiRaised', (val)=>val]]
-            }*/
+            },
+            {
+                target: saleContractAddress,
+                call: ['perBeneficiaryCap()(uint256)'],
+                returns: [['perBeneficiaryCap', (val)=>val]]
+            }
         ];
-        /*if(!!account) {
+        if(!!account) {
             calls.concat([
                 ...calls,
                 {
                     target: saleContractAddress,
-                    call: ['isWhitelisted(address)',account],
+                    call: ['isWhitelisted(address)(bool)',account],
                     returns: [['isWhitelisted', (val)=>val]]
                 },
                 {
                     target: saleContractAddress,
-                    call: ['contribution(address)',account],
+                    call: ['contribution(address)(uint256)',account],
                     returns: [['contribution', (val)=>val]]
                 }
             ])
-        }*/
+        }
         watcher = createWatcher(calls,
             {
                 rpcUrl:RPC_URLS[chainId],
@@ -92,12 +91,10 @@ export function useSaleContractState(chainId, saleContractAddress) {
             }
         );
         watcher.batch().subscribe(updates=>{
-            console.log("Update fetched")
-            let newState = {...saleContractState}
+            let newState = {}
             updates.forEach(update => {
                 newState[update.type] = update.value
             });
-            console.log(newState)
             setSaleContractState(
                 newState
             );
