@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+
 import Button from "./Button.js";
 import React from "react";
 import {useEthers} from "@usedapp/core";
 import {BLOCK_EXPLORERS, CHAIN_CURRENCIES} from "../../constants";
 import {addChainToMetaMask, addTokenToMetamask} from "../../lib/metamask.js";
+import {useSaleContractState} from "../../hooks/useSaleContractState.js";
+
+import {weiToFixed} from "../../lib/bndisplay";
 
 /*TODO: 
 - Fetch time end, time start, rate, cap, and user cap from contract
@@ -11,6 +15,7 @@ import {addChainToMetaMask, addTokenToMetamask} from "../../lib/metamask.js";
 */
 const SaleCard = ({sale}) => {
   const { chainId } = useEthers();
+  const saleContractState = useSaleContractState(sale.chainId, sale.address);
 
   const [isOnChain, setIsOnChain] = useState(chainId == sale.chainId);
   useEffect(()=>{
@@ -45,16 +50,16 @@ const SaleCard = ({sale}) => {
           </tr>
           <tr>
             <td>Start Countdown</td>
-            <td>{"00:00:00"}</td>
+            <td>{saleContractState.openingTime}</td>
           </tr>
           <tr>
             <td>End Countdown</td>
-            <td>{"00:00:00"}</td>
+            <td>{saleContractState.closingTime}</td>
           </tr>
           <tr>
             <td>Cap</td>
             <td>
-              {"1000"} {currency}
+              {weiToFixed(saleContractState.cap,2)} {currency}
             </td>
           </tr>
           <tr>
