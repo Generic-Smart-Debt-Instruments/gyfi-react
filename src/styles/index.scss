@@ -8,10 +8,6 @@ td {
   @include themed {
     border: 1px solid t("border");
   }
-
-  button {
-    width: 100%;
-  }
 }
 table {
   margin: 20px;

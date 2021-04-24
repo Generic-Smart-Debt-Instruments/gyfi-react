@@ -1,11 +1,11 @@
-import { utils } from 'ethers';
+import { utils, BigNumber } from 'ethers';
 
-/*
+
 import {
-  getExplorerUrl,
-  getNetworkCurrency,
-  getNetworkName,
-  getRPCUrl,
+  BLOCK_EXPLORERS,
+  CHAIN_CURRENCIES,
+  CHAIN_LABELS,
+  RPC_URLS,
 } from '../constants';
 
 export const addTokenToMetamask = async token => {
@@ -22,24 +22,23 @@ export const addTokenToMetamask = async token => {
   });
 };
 
-export const addChainToMetaMask = async ethereumChain => {
-  const { chainId } = ethereumChain;
-  const { name, symbol } = getNetworkCurrency(chainId);
+export const addChainToMetaMask = async chainId => {
+  const name = CHAIN_LABELS[chainId];
+  const symbol = CHAIN_CURRENCIES[chainId];
   return window.ethereum.request({
     method: 'wallet_addEthereumChain',
     params: [
       {
-        chainId: utils.hexValue(chainId),
-        chainName: getNetworkName(chainId),
+        chainId: utils.hexValue(BigNumber.from(chainId)),
+        chainName: name,
         nativeCurrency: {
-          name,
+          name:symbol,
           symbol,
           decimals: 18,
         },
-        rpcUrls: [getRPCUrl(chainId)],
-        blockExplorerUrls: [getExplorerUrl(chainId)],
+        rpcUrls: [RPC_URLS[chainId]],
+        blockExplorerUrls: [BLOCK_EXPLORERS[chainId]],
       },
     ],
-  });
+  }).catch(err => console.log(err));
 };
-*/

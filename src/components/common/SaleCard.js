@@ -1,13 +1,25 @@
+import { useEffect, useState } from "react";
 import Button from "./Button.js";
 import React from "react";
+import {useEthers} from "@usedapp/core";
+import {BLOCK_EXPLORERS, CHAIN_CURRENCIES} from "../../constants";
+import {addChainToMetaMask, addTokenToMetamask} from "../../lib/metamask.js";
 
 /*TODO: 
-- Get correct block explorer
 - Fetch time end, time start, rate, cap, and user cap from contract
-- When click netwok button, switch to network
+- When click network button, switch to network
 */
 const SaleCard = ({sale}) => {
-  const blockExplorerUrl = "https://rinkeby.etherscan.io"
+  const { chainId } = useEthers();
+
+  const [isOnChain, setIsOnChain] = useState(chainId == sale.chainId);
+  useEffect(()=>{
+    setIsOnChain(!!chainId && sale.chainId == chainId.toString());
+  },[chainId])
+
+  
+  const blockExplorerUrl = BLOCK_EXPLORERS[sale.chainId];
+  const currency = CHAIN_CURRENCIES[sale.chainId];
   return (
     <>
       <table>
@@ -20,7 +32,15 @@ const SaleCard = ({sale}) => {
           <tr>
             <td>Network:</td>
             <td>
-              <Button>{sale.network}</Button>
+              {sale.network}
+              { isOnChain ? (<>
+                ✔
+              </>) : (<>
+                ❌{(sale.chainId != "1" && sale.chainId != "3" && sale.chainId != "4" && sale.chainId != "42" && sale.chainId != "420" ) &&
+                  <Button onClick={()=>addChainToMetaMask(sale.chainId)}>{"<->"}</Button>
+                }
+              </>)
+              }
             </td>
           </tr>
           <tr>
@@ -34,13 +54,13 @@ const SaleCard = ({sale}) => {
           <tr>
             <td>Cap</td>
             <td>
-              {"1000"} {"BNB"}
+              {"1000"} {currency}
             </td>
           </tr>
           <tr>
             <td>User Cap:</td>
             <td>
-              {"1000"} {"BNB"}
+              {"1000"} {currency}
             </td>
           </tr>
           <tr>
@@ -50,7 +70,7 @@ const SaleCard = ({sale}) => {
           <tr>
             <td>Rate:</td>
             <td>
-              {"1"} GYFI/{"BNB"}
+              {"1"} GYFI/{currency}
             </td>
           </tr>
           <tr>

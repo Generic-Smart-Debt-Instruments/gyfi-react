@@ -12,7 +12,7 @@ function Sale() {
       {(saleConfig && saleConfig.sales && !saleConfig.error) ? (<>
         {saleConfig.sales.map((sale)=><SaleCard sale={sale} key={sale.name} />)}
       </>) : (<>
-        <p>To view GYFI sales, connect your web3 wallet.</p>
+        <p>Fetching GYFI sales from ENS...</p>
       </>)
       }
     </main>

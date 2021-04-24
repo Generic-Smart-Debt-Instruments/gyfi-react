@@ -16,10 +16,18 @@ export const SUPPORT_CHAINS = [
 
 export const CHAIN_LABELS = {
   [CHAINS.Mainnet]: "ETH Mainnet",
-  [CHAINS.Rinkeby]: "ETH Testnet",
+  [CHAINS.Rinkeby]: "ETH Rinkeby",
   [CHAINS.BSC]: "BSC Mainnet",
   [CHAINS.BSCTestnet]: "BSC Testnet",
   [CHAINS.xDai]: "xDai",
+};
+
+export const CHAIN_CURRENCIES = {
+  [CHAINS.Mainnet]: "ETH",
+  [CHAINS.Rinkeby]: "ETH",
+  [CHAINS.BSC]: "BNB",
+  [CHAINS.BSCTestnet]: "BNB",
+  [CHAINS.xDai]: "xDAI",
 };
 
 export const RPC_URLS = {
@@ -28,6 +36,14 @@ export const RPC_URLS = {
   [CHAINS.BSC]: "https://bsc-dataseed.binance.org/",
   [CHAINS.BSCTestnet]: "https://data-seed-prebsc-1-s2.binance.org:8545/",
   [CHAINS.xDai]: "https://rpc.xdaichain.com",
+};
+
+export const BLOCK_EXPLORERS = {
+  [CHAINS.Mainnet]: `https://etherscan.io`,
+  [CHAINS.Rinkeby]: `https://rinkeby.etherscan.io`,
+  [CHAINS.BSC]: "https://bscscan.com",
+  [CHAINS.BSCTestnet]: "https://testnet.bscscan.com",
+  [CHAINS.xDai]: "https://blockscout.com/xdai/mainnet",
 };
 
 export const MUTICALL_ADDRESSES = {
