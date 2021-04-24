@@ -26,8 +26,10 @@ const SaleCard = ({sale}) => {
   const blockExplorerUrl = BLOCK_EXPLORERS[sale.chainId];
   const currency = CHAIN_CURRENCIES[sale.chainId];
 
-  const startCountdown = useCountdown(saleContractState.openingTime,"Sale Started.");
-  const endCountdown = useCountdown(saleContractState.closingTime,"Sale Finished.");
+  const startCountdown = useCountdown(saleContractState ? saleContractState.openingTime : 0, "Sale Started.");
+  const endCountdown = useCountdown(saleContractState ? saleContractState.closingTime : 0, "Sale Finished.");
+
+  if(!saleContractState) return(<p>Loading from {sale.network}: {sale.name}</p>)
 
   return (
     <>
@@ -74,17 +76,13 @@ const SaleCard = ({sale}) => {
           </tr>
           <tr>
             <td>GYFI available:</td>
-            {(!!saleContractState.rate && !!saleContractState.cap && !!saleContractState.weiRaised) && (
-              <td>{weiToFixed(saleContractState.rate.mul(saleContractState.cap).sub(saleContractState.weiRaised),0)} GYFI</td>
-            )}
+            <td>{weiToFixed(saleContractState.rate.mul(saleContractState.cap).sub(saleContractState.weiRaised),0)} GYFI</td>
           </tr>
           <tr>
             <td>Rate:</td>
-            {!!saleContractState.rate && (
-              <td>
-                {saleContractState.rate.toString()} GYFI/{currency}
-              </td>
-            )}
+            <td>
+              {saleContractState.rate.toString()} GYFI/{currency}
+            </td>
           </tr>
           <tr>
             <td>Contract Address:</td>

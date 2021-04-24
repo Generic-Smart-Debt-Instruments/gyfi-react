@@ -6,18 +6,7 @@ import { MULTICALL_ADDRESSES } from "@usedapp/core";
 
 export function useSaleContractState(chainId, saleContractAddress) {
     const { account } = useEthers()
-    const [saleContractState, setSaleContractState] = useState({
-        cap:null,
-        capReached:null,
-        openingTime:null,
-        closingTime:null,
-        isOpen:null,
-        hasClosed:null,
-        rate:null,
-        weiRaised:null,
-        isWhitelisteed:null,
-        contribution:null
-    });
+    const [saleContractState, setSaleContractState] = useState(null);
 
     useEffect(()=>{
         if(!chainId || !saleContractAddress) return;
