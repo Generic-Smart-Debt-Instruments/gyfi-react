@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {utils} from "ethers";
 
 import Button from "./Button.js";
 import React from "react";
@@ -28,6 +29,8 @@ const SaleCard = ({sale}) => {
 
   const startCountdown = useCountdown(saleContractState ? saleContractState.openingTime : 0, "Sale Started.");
   const endCountdown = useCountdown(saleContractState ? saleContractState.closingTime : 0, "Sale Finished.");
+
+  const [purchaseWei, setPurchaseWei] = useState(1);
 
   if(!saleContractState) return(<p>Loading from {sale.network}: {sale.name}</p>)
 
@@ -69,6 +72,12 @@ const SaleCard = ({sale}) => {
             </td>
           </tr>
           <tr>
+            <td>Total Deposits:</td>
+            <td>
+              {weiToFixed(saleContractState.weiRaised,2)} {currency}
+            </td>
+          </tr>
+          <tr>
             <td>User Cap:</td>
             <td>
               {weiToFixed(saleContractState.perBeneficiaryCap,2)} {currency}
@@ -76,12 +85,12 @@ const SaleCard = ({sale}) => {
           </tr>
           <tr>
             <td>GYFI available:</td>
-            <td>{weiToFixed(saleContractState.rate.mul(saleContractState.cap).sub(saleContractState.weiRaised),0)} GYFI</td>
+            <td>{weiToFixed(saleContractState.rate.mul(saleContractState.cap.sub(saleContractState.weiRaised)),0)} GYFI</td>
           </tr>
           <tr>
             <td>Rate:</td>
             <td>
-              {saleContractState.rate.toString()} GYFI/{currency}
+              {saleContractState.rate.toString()} GYFI{currency}
             </td>
           </tr>
           <tr>
@@ -90,6 +99,31 @@ const SaleCard = ({sale}) => {
               <a href={`${blockExplorerUrl}/address/${sale.address}`}>{sale.address}</a>
             </td>
           </tr>
+          {isOnChain && saleContractState.isOpen && !saleContractState.hasClosed && !saleContractState.capReached && (<>
+            <tr>
+              <th colSpan={2}>Purchase GYFI</th>
+            </tr>
+            <tr>
+              <td>Amount {currency}:</td>
+              <td><input type="number" step="0.01" min="0" placeholder="1" max={weiToFixed(saleContractState.perBeneficiaryCap,2)}
+                onChange={(event)=>{
+                  const input = event.target.value;
+                  const max = Number(weiToFixed(saleContractState.perBeneficiaryCap,2))
+                  if(isNaN(input) || Number(input)<=0) {
+                    setPurchaseWei("0");
+                  } else if (Number(input) > max ) {
+                    setPurchaseWei(saleContractState.perBeneficiaryCap);
+                  } else {
+                    setPurchaseWei(utils.parseEther(Number(input).toString()));
+                  }
+                }}
+              /></td>
+            </tr>
+            <tr>
+              <td>Request Tx:</td>
+              <td><button onClick={()=>alert("Not yet connected to contract")} >buy</button> {weiToFixed(purchaseWei,2)} {currency}</td>
+            </tr>
+          </>)}
         </tbody>
       </table>
     </>
